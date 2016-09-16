@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/out
+/tmp
+internal.R
+*.pdf
+/data
+README.html
