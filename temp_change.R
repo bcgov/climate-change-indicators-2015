@@ -148,6 +148,7 @@ ecoprovinces <- ecoprovinces[,c("CPRVNCNM", "Trend_Ccentury", "Stat_Significance
 names(ecoprovinces)[1:3] <- c("region", "trend", "sig")
 ecoprovinces$region <- tools::toTitleCase(tolower(ecoprovinces$region))
 
+## clips to bc boundaries and simplifies for web map
 spTransform(ecoprovinces, CRS("+init=epsg:4326")) %>% 
   ms_clip(bc_bound) %>% 
   ms_simplify(0.01, keep_shapes = TRUE) %>% 
