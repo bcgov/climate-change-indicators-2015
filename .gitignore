@@ -8,3 +8,5 @@ internal.R
 *.pdf
 /data
 README.html
+/outprecip
+/outtemp
