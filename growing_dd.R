@@ -18,8 +18,8 @@ library(envreportutils) #multiplot function, theme_soe
 library(RColorBrewer) #colours from RBrewer
 library(bcmaps) #using map files
 library(raster) #intersect and aggregate functions - keeping attributes
-library(maptools) # map
-library(rgeos) 
+library(maptools) # mapping
+library(rgeos) #mapping
 library(rmapshaper) #ms_simplify
 
 
