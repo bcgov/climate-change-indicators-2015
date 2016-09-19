@@ -6,13 +6,24 @@
 
 # Data Visualizations for Indicators of Climate Change for B.C. (2015)
 
-A set of R scripts for creating data visualizations for climate change indicators published on [Environmental Reporting BC](http://www2.gov.bc.ca/gov/content?id=3C233B4F802A4FE186297EC52311E40C) in 2015.
+A set of R scripts for creating data visualizations for climate change indicators published on [Environmental Reporting BC](http://www2.gov.bc.ca/gov/content?id=3C233B4F802A4FE186297EC52311E40C) in 2015:
+
+- [Change in Size of B.C. Glaciers (1985-2005)](http://www.env.gov.bc.ca/soe/indicators/climate-change/glaciers.html)
+- [Long-term Change in Heat Energy Available for Plant Growth in B.C. (1900-2013)](http://www.env.gov.bc.ca/soe/indicators/climate-change/growing-days.html)
+- [Long-term Change in Energy Requirements for Heating & Cooling Buildings in B.C.](http://www.env.gov.bc.ca/soe/indicators/climate-change/heating-cooling-days.html)
+- [Long-term Change in Air Temperature in B.C. (1900-2013)](http://www.env.gov.bc.ca/soe/indicators/climate-change/temp.html)
+- [Long-term Change in Precipitation in B.C. (1900-2013)](http://www.env.gov.bc.ca/soe/indicators/climate-change/precip.html)
+
 
 ### Usage
 
 #### Data
 The data used to develop the indicator data visualizations are available from the [BC Data Catalogue](https://catalogue.data.gov.bc.ca/dataset?download_audience=Public) under the
-[Open Government License - BC](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc).
+[Open Government License - BC](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc):
+
+- [Change in Size of Glaciers in BC (1985-2005)](https://catalogue.data.gov.bc.ca/dataset/89ff86d7-2d04-4c96-b945-ba56688906eb)
+- [Long-term Change in Growing Degree Days and Heating and Cooling Degree Days in BC](https://catalogue.data.gov.bc.ca/dataset/8f0d304e-161d-42e6-a982-cad13e60bd8f)
+- [Long-term Change in Air Temperature and Precipitation in BC](https://catalogue.data.gov.bc.ca/dataset/86f93096-8d3d-4b68-ab63-175cc68257e6)
 
 
 ####Code
