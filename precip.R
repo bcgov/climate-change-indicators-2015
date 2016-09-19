@@ -47,7 +47,7 @@ plotlabels <- c("Observed Change in Average Precipitation")
 colrs <- c("#377eb8") #blue
 
 ## Directory for plots
-dir.create("out", showWarnings = FALSE)
+dir.create("outprecip", showWarnings = FALSE)
 
 ## Looping through Ecoprovinces and creating plots
 for (ecoprov in unique(precipdata$Ecoprovince)) {
@@ -58,7 +58,7 @@ for (ecoprov in unique(precipdata$Ecoprovince)) {
   ##Create png file names
   plotfile <- "plot"
   title_case_title <- tools::toTitleCase(tolower(ecoprov))
-  png_name <- sprintf('out/%s_%s.png', title_case_title, plotfile)
+  png_name <- sprintf('outprecip/%s_%s.png', title_case_title, plotfile)
   
   ## Create chart title
   type <- ifelse(ecoprov == "British Columbia", "", "Ecoprovince")
@@ -111,7 +111,7 @@ add_alpha <- function(col, alpha=1){
 ## Javascript Map Scale
 scale_colours <- c("#FFFFFF", brewer.pal(6, "Blues")[2:6]) # Generate 6 and choose last 5 to get darker shades
 names(scale_colours) <- c("No significant\nchange","0 - 5", "6 - 10", "11 - 15", "16 - 20", "21+")
-png("out/map_scale.png", width = 460, height = 80)
+png("outprecip/map_scale.png", width = 460, height = 80)
 par(mar = c(4,0,0,0), mgp = c(3,1.1,0))
 image(1:6, 1, matrix(1:6), col = add_alpha(scale_colours, 0.7), ylab = "", 
       axes = FALSE, xlab = "")
@@ -147,5 +147,5 @@ ecoprovinces$region <- tools::toTitleCase(tolower(ecoprovinces$region))
 spTransform(ecoprovinces, CRS("+init=epsg:4326")) %>% 
   ms_clip(bc_bound) %>% 
   ms_simplify(0.01, keep_shapes = TRUE) %>% 
-  geojson_write(file = "out/ecoprovinces.geojson", precision = 5)
+  geojson_write(file = "outprecip/ecoprovinces.geojson", precision = 5)
 
