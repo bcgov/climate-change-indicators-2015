@@ -38,7 +38,7 @@ install_github("bcgov/envreportutils")
 
 ### Getting Help or Reporting an Issue
 
-To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/<repo-name>/issues/).
+To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/climate-change-indicators-2015/issues).
 
 ### How to Contribute
 
