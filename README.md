@@ -16,15 +16,15 @@ A set of R scripts for creating data visualizations for climate change indicator
 ### Usage
 
 #### Data
-The data used to develop the indicator data visualizations are available from the [BC Data Catalogue](https://catalogue.data.gov.bc.ca/dataset?download_audience=Public) under the
-[Open Government License - BC](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc):
+The data used to develop the indicator data visualizations are available from the [B.C. Data Catalogue](https://catalogue.data.gov.bc.ca/dataset?download_audience=Public) under the
+[Open Government Licence - British Columbia](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc):
 
 - [Change in Size of Glaciers in BC (1985-2005)](https://catalogue.data.gov.bc.ca/dataset/89ff86d7-2d04-4c96-b945-ba56688906eb)
 - [Long-term Change in Growing Degree Days and Heating and Cooling Degree Days in BC](https://catalogue.data.gov.bc.ca/dataset/8f0d304e-161d-42e6-a982-cad13e60bd8f)
 - [Long-term Change in Air Temperature and Precipitation in BC](https://catalogue.data.gov.bc.ca/dataset/86f93096-8d3d-4b68-ab63-175cc68257e6)
 
 
-####Code
+#### Code
 
 Most packages used in the code can be installed from CRAN using `install.packages()`, but you will need to install [envreportutils](https://github.com/bcgov/envreportutils) using devtools:
 
