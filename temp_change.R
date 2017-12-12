@@ -62,13 +62,15 @@ for (ecoprov in unique(tempdata$Ecoprovince)) {
   plotfile <- "plot"
   title_case_title <- tools::toTitleCase(tolower(ecoprov))
   png_name <- sprintf('outtemp/%s_%s.png', title_case_title, plotfile)
+  svg_name <- sprintf('outtemp/%s_%s.svg', title_case_title, plotfile)
   
   ## Create chart title
   type <- ifelse(ecoprov == "British Columbia", "", "Ecoprovince")
   plot_title <- paste(title_case_title, type)
   
   ## Bar plot
-  png(file=png_name, width=350, height=500, type = "cairo-png")
+#  png(file=png_name, width=350, height=500, type = "cairo-png")
+ svg_px(file=svg_name, width=350, height=500)
   tempplot <- ggplot(plotdata, aes(x = Measure, y = Trend_Ccentury)) + 
     geom_point(aes(colour = Measure), size = 4) +
     geom_errorbar(aes(ymax = Trend_Ccentury + Uncertainty_Ccentury,
@@ -80,20 +82,22 @@ for (ecoprov in unique(tempdata$Ecoprovince)) {
     ylab("Degrees Celcius per century") +
     ggtitle(plot_title) + 
     theme_soe_facet() + 
-    theme(plot.title = element_text(size = rel(1.2)),
+    theme(plot.title = element_text(size = rel(1.3), hjust = 0.5),
           axis.text.x = element_blank(),
           axis.title.x = element_blank(),
-          axis.title.y = element_text(size=12),
+          axis.title.y = element_text(size=14),
           axis.line = element_blank(),
           panel.grid.major.x = element_blank(),
-          panel.grid.minor.y = element_line(),
+          panel.grid.minor.y = element_blank(),
           panel.border = element_rect(colour = "grey50", fill = NA),
           panel.background = element_rect(colour = "grey50", fill = NA),
           strip.background = element_rect(colour = "grey50"),
           panel.margin.x = unit(0, "lines"), 
-          strip.text = element_text(size = rel(0.9)), 
+          strip.text = element_text(size = rel(1.1)), 
           legend.position = ("bottom"),
-          legend.direction = ("vertical"), 
+          legend.direction = ("vertical"),
+          legend.text = element_text(size = 14),
+          legend.title = element_text(size = 14),
           plot.margin = unit(c(1,0.1,0,0.5), "lines")) +
     geom_text(aes(y = Trend_Ccentury, label = sig, hjust = 1.2, vjust = 1.8), 
               colour = "grey30", size = 2.8, family = "Verdana") +
@@ -119,7 +123,8 @@ add_alpha <- function(col, alpha=1){
 
 scale_colours <- c("#FFFFFF", brewer.pal(5, "Reds"))
 names(scale_colours) <- c("No significant\nchange", "0.0 - 0.4", "0.5 - 0.9", "1.0 - 1.4", "1.5 - 1.9", "2.0+")
-png("outtemp/map_scale.png", width = 460, height = 80)
+#png("outtemp/map_scale.png", width = 460, height = 80)
+svg_px("outtemp/map_scale.svg", width = 460, height = 80)
 par(mar = c(4,0,0,0), mgp = c(3,1.1,0))
 image(1:6, 1, matrix(1:6), col = add_alpha(scale_colours, 0.7), ylab = "", axes = FALSE, xlab = "")
 box("plot", col = "grey")
