@@ -103,14 +103,20 @@ area_charts <- ggplot(facet_plot, aes(reorder(Ecoprovince, value), value, label 
   theme_soe_facet() +
   theme(panel.grid.major.x = (element_blank()), strip.text.y = element_blank(), 
         strip.background = element_blank(),
-        axis.title.x = element_text(face = "bold"))
+        axis.title.x = element_text(size = 14, face = "bold"),
+        axis.text = element_text(size = 12))
 plot(area_charts)
 
 ##print bar plot to PNG
+if (!exists("out")) dir.create("out", showWarnings = FALSE)
+
 png(filename = "out/area_barchart.png", width = 650, height = 550, units = "px")
 area_charts
 dev.off()
 
+svg_px(file = "out/area_barchart.svg", width = 650, height = 550)
+area_charts
+dev.off()
 
 ## Javascript Data Viz & Map Scale
 
@@ -162,7 +168,8 @@ add_alpha <- function(col, alpha=1){
 }
 
 ## pring map scale in PNG
-png("out/map_scale.png", width = 460, height = 80)
+#png("out/map_scale.png", width = 460, height = 80)
+svg_px("out/map_scale.svg", width = 460, height = 80)
 par(mar = c(4,0,0,0), mgp = c(3,1.1,0))
 image(1:6, 1, matrix(1:6), col = add_alpha(scale_colours, 0.7), ylab = "", 
       axes = FALSE, xlab = "")
