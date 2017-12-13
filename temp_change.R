@@ -72,7 +72,7 @@ for (ecoprov in unique(tempdata$Ecoprovince)) {
 #  png(file=png_name, width=350, height=500, type = "cairo-png")
  svg_px(file=svg_name, width=350, height=500)
   tempplot <- ggplot(plotdata, aes(x = Measure, y = Trend_Ccentury)) + 
-    geom_point(aes(colour = Measure), size = 4) +
+    geom_point(aes(colour = Measure), size = 3) +
     geom_errorbar(aes(ymax = Trend_Ccentury + Uncertainty_Ccentury,
                       ymin= Trend_Ccentury - Uncertainty_Ccentury,
                       colour = Measure), width=.3, size = .5) +
@@ -84,6 +84,7 @@ for (ecoprov in unique(tempdata$Ecoprovince)) {
     theme_soe_facet() + 
     theme(plot.title = element_text(size = rel(1.3), hjust = 0.5),
           axis.text.x = element_blank(),
+          axis.text.y = element_text(size = 12),
           axis.title.x = element_blank(),
           axis.title.y = element_text(size=14),
           axis.line = element_blank(),
