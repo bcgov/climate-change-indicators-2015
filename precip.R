@@ -59,15 +59,17 @@ for (ecoprov in unique(precipdata$Ecoprovince)) {
   plotfile <- "plot"
   title_case_title <- tools::toTitleCase(tolower(ecoprov))
   png_name <- sprintf('outprecip/%s_%s.png', title_case_title, plotfile)
+  svg_name <- sprintf('outprecip/%s_%s.svg', title_case_title, plotfile)
   
   ## Create chart title
   type <- ifelse(ecoprov == "British Columbia", "", "Ecoprovince")
   plot_title <- paste(title_case_title, type)
   
   ## Bar plot
-  png(file=png_name, width=350, height=500, type = "cairo-png")
-  tempplot <- ggplot(plotdata, aes(x = Season, y = Trend_percentcentury)) + 
-    geom_point(aes(colour = colrs), size = 4) +
+#  png(file=png_name, width=350, height=500, type = "cairo-png")
+  svg_px(file=svg_name, width=350, height=500)
+    tempplot <- ggplot(plotdata, aes(x = Season, y = Trend_percentcentury)) + 
+    geom_point(aes(colour = colrs), size = 3) +
     geom_errorbar(aes(ymax = Trend_percentcentury + Uncertainty_percentcentury,
                       ymin= Trend_percentcentury - Uncertainty_percentcentury,
                       colour = colrs), width=.3, size = .5) +
@@ -76,23 +78,26 @@ for (ecoprov in unique(precipdata$Ecoprovince)) {
     ylab("Percent per century") +
     ggtitle(plot_title) + 
     theme_soe() + 
-    theme(plot.title = element_text(size = rel(1.2)),
-          axis.title.y = element_text(size=13),
+    theme(plot.title = element_text(size = rel(1.3), hjust = 0.5),
+          axis.title.y = element_text(size=14),
           axis.title.x = element_blank(),
+          axis.text = element_text(size = 12),
           axis.line = element_blank(),
           panel.grid.major.x = element_blank(),
-          panel.grid.minor.y = element_line(),
+          panel.grid.minor.y = element_blank(),
           panel.border = element_rect(colour = "grey50", fill = NA),
           panel.background = element_rect(colour = "grey50", fill = NA),
           legend.position = ("bottom"),
-          legend.direction = ("horizontal"), 
+          legend.direction = ("horizontal"),
+          legend.text = element_text(size = 14),
+          legend.title = element_text(size = 14),
           plot.margin = unit(c(1,0.1,0,0.5), "lines")) +
     geom_text(aes(y = Trend_percentcentury, label = sig, hjust = 1.2, vjust = 1.8), 
               colour = "grey30", size = 2.8, family = "Verdana") +
     scale_colour_manual(name = "", values = colrs,
                         labels = plotlabels) +
     geom_hline(aes(yintercept = 0), linetype = 2, colour = "black")  
-  plot(tempplot) 
+#  plot(tempplot) 
   
   #Printing png plots
   print(tempplot)
@@ -111,7 +116,8 @@ add_alpha <- function(col, alpha=1){
 ## Javascript Map Scale
 scale_colours <- c("#FFFFFF", brewer.pal(6, "Blues")[2:6]) # Generate 6 and choose last 5 to get darker shades
 names(scale_colours) <- c("No significant\nchange","0 - 5", "6 - 10", "11 - 15", "16 - 20", "21+")
-png("outprecip/map_scale.png", width = 460, height = 80)
+#png("outprecip/map_scale.png", width = 460, height = 80)
+svg_px("outprecip/map_scale.svg", width = 460, height = 80)
 par(mar = c(4,0,0,0), mgp = c(3,1.1,0))
 image(1:6, 1, matrix(1:6), col = add_alpha(scale_colours, 0.7), ylab = "", 
       axes = FALSE, xlab = "")
