@@ -76,6 +76,7 @@ plot(bar_chart)
 
 ## Static Map
 
+## getting sp objects from bcmaps
 ecoprovinces <- ecoprovinces(class = "sp")
 bc_bound <- bc_bound(class = "sp")
 
