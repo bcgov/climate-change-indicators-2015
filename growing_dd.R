@@ -55,10 +55,9 @@ pal <- brewer.pal(9, "YlOrBr")[4:8]
 bar_chart <- ggplot(df_plot, aes(x = reorder(Ecoprovince, -Trend_DDcentury), y = Trend_DDcentury, 
                                  fill = Trend_DDcentury, 
                                  colour = Trend_DDcentury)) +
-  geom_bar(stat ="identity", alpha = 1, colour = NA) +
+  geom_bar(stat = "identity" , alpha = 1, colour = NA) +
   geom_errorbar(aes(ymin = Trend_DDcentury - Uncertainty_DDcentury, 
-                    ymax = Trend_DDcentury + Uncertainty_DDcentury,
-                    stat = "identity"),
+                    ymax = Trend_DDcentury + Uncertainty_DDcentury),
                 width = 0.3, size = 0.5) + 
   scale_fill_gradientn(colours = pal) +
   scale_colour_gradientn(colours = "#662506") +
@@ -69,11 +68,16 @@ bar_chart <- ggplot(df_plot, aes(x = reorder(Ecoprovince, -Trend_DDcentury), y =
   theme_soe() +
   theme(legend.position = "none",
         plot.margin = unit(c(20,20,60,-40),"mm"),
-        panel.grid.major.x = (element_blank()))
-#plot(bar_chart)
+        panel.grid.major.x = (element_blank()),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 12))
+plot(bar_chart)
 
 
 ## Static Map
+
+ecoprovinces <- ecoprovinces(class = "sp")
+bc_bound <- bc_bound(class = "sp")
 
 ## intersecting two maps and clipping (from bcmaps package)
 ecoprov_clip <- intersect(ecoprovinces, bc_bound)
@@ -85,10 +89,10 @@ ecoprov_clip <- ms_simplify(ecoprov_clip, keep = 0.05)
 
 ## aggregating small polygons into 1 for each ecozone
 ecoprov_map <- aggregate(ecoprov_clip,
-                         by = "CPRVNCNM")
+                         by = "ECOPROVINCE_NAME")
 
 ## creating map for ggplot2 using df dataframe
-ecoprov_df <- fortify(ecoprov_map, region = "CPRVNCNM")
+ecoprov_df <- fortify(ecoprov_map, region = "ECOPROVINCE_NAME")
 ecoprov_df <- left_join(ecoprov_df, df, by = c("id" = "Ecoprovince"))
 
 ## creating a map theme
@@ -96,7 +100,8 @@ map_theme <- theme(axis.title = element_blank(),
                    axis.text = element_blank(), 
                    axis.ticks = element_blank(),
                    panel.grid = element_blank(),
-                   legend.title = element_text(size = 11, face = "bold"),
+                   legend.title = element_text(size = 13, face = "bold"),
+                   legend.text = element_text(size = 12),
                    text = element_text(family = "Verdana"))
 
 ## MAP
@@ -111,7 +116,7 @@ gdd_map <- ggplot(ecoprov_df, aes(x = long, y = lat, group = group, fill = Trend
   map_theme +
   theme(legend.position = c(0.24, 0.16),
         legend.direction = ("vertical"),
-        plot.margin = unit(c(-20,0,-20,0),"mm")) +
+        plot.margin = unit(c(-20,0,-10,0),"mm")) +
   annotate("text", x=720000, y=700000,label="Coast &\nMountains\n(CM)",colour="black",
            size=4, family = "Verdana") +
   annotate("text", x=1200000, y=1550000,label="Taiga\nPlain\n(TP)",colour="black",
@@ -130,7 +135,7 @@ gdd_map <- ggplot(ecoprov_df, aes(x = long, y = lat, group = group, fill = Trend
            size=4, family = "Verdana") +
   annotate("text", x=1320000, y=377000,label="Georgia\nDepression\n(GD)",colour="black",
            size=4, family = "Verdana") 
- #plot(gdd_map)
+ plot(gdd_map)
 
 
 ## Print to PNG
@@ -146,8 +151,14 @@ gdd_map <- ggplot(ecoprov_df, aes(x = long, y = lat, group = group, fill = Trend
 #dev.off()
 
 ## Combined map and barchart with multiplot
-png(filename = "./out/gdd_viz.png", width=930, height=478, units="px", type = "cairo-png")
+#png(filename = "./out/gdd_viz.png", width=930, height=478, units="px", type = "cairo-png")
+#multiplot(gdd_map, bar_chart, cols=2, widths = c(1.6, 1))
+#dev.off()
+
+png_retina(filename = "./out/gdd_viz.png", width=930, height=478, units="px", type = "cairo-png")
 multiplot(gdd_map, bar_chart, cols=2, widths = c(1.6, 1))
 dev.off()
 
-
+# svg_px(file = "./out/gdd_viz.svg", width=930, height=478)
+# multiplot(gdd_map, bar_chart, cols=2, widths = c(1.6, 1))
+# dev.off()
