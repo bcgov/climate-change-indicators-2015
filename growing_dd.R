@@ -67,7 +67,7 @@ bar_chart <- ggplot(df_plot, aes(x = reorder(Ecoprovince, -Trend_DDcentury), y =
                      expand=c(0,0)) +
   theme_soe() +
   theme(legend.position = "none",
-        plot.margin = unit(c(20,20,60,-40),"mm"),
+        plot.margin = unit(c(20,0,5,0),"mm"),
         panel.grid.major.x = (element_blank()),
         axis.text = element_text(size = 12),
         axis.title = element_text(size = 12))
@@ -116,8 +116,8 @@ gdd_map <- ggplot(ecoprov_df, aes(x = long, y = lat, group = group, fill = Trend
   theme_minimal() +
   map_theme +
   theme(legend.position = c(0.24, 0.16),
-        legend.direction = ("vertical"),
-        plot.margin = unit(c(-20,0,-10,0),"mm")) +
+        legend.direction = ("vertical")) +
+ #       plot.margin = unit(c(-20,0,-10,0),"mm")) +
   annotate("text", x=720000, y=700000,label="Coast &\nMountains\n(CM)",colour="black",
            size=4, family = "Verdana") +
   annotate("text", x=1200000, y=1550000,label="Taiga\nPlain\n(TP)",colour="black",
@@ -135,30 +135,34 @@ gdd_map <- ggplot(ecoprov_df, aes(x = long, y = lat, group = group, fill = Trend
   annotate("text", x=1570000, y=695000,label="S. Interior\nMountains\n(SIM)",colour="black",
            size=4, family = "Verdana") +
   annotate("text", x=1320000, y=377000,label="Georgia\nDepression\n(GD)",colour="black",
-           size=4, family = "Verdana") 
+           size=4, family = "Verdana")
  plot(gdd_map)
 
 
 ## Print to PNG
 
 ## output map
-#png(filename = "./out/gdd_map.png", width=836, height=430, units="px", type = "cairo-png")
-#plot(gdd_map)
-#dev.off()
+# svg_px(file = "./out/gdd_map.svg", width=500, height=500)
+# plot(gdd_map)
+# dev.off()
+
+png_retina(filename = "./out/gdd_map.png", width=600, height=500, units="px", type = "cairo-png")
+plot(gdd_map)
+dev.off()
 
 ## output chart 
-#png(filename = "./out/gdd_chart.png", width=836, height=430, units="px", type = "cairo-png")
-#plot(bar_chart)
-#dev.off()
+svg_px(file = "./out/gdd_chart.svg", width=500, height=400)
+plot(bar_chart)
+dev.off()
 
 ## Combined map and barchart with multiplot
 #png(filename = "./out/gdd_viz.png", width=930, height=478, units="px", type = "cairo-png")
 #multiplot(gdd_map, bar_chart, cols=2, widths = c(1.6, 1))
 #dev.off()
 
-png_retina(filename = "./out/gdd_viz.png", width=930, height=478, units="px", type = "cairo-png")
-multiplot(gdd_map, bar_chart, cols=2, widths = c(1.6, 1))
-dev.off()
+# png_retina(filename = "./out/gdd_viz.png", width=930, height=478, units="px", type = "cairo-png")
+# multiplot(gdd_map, bar_chart, cols=2, widths = c(1.6, 1))
+# dev.off()
 
 # svg_px(file = "./out/gdd_viz.svg", width=930, height=478)
 # multiplot(gdd_map, bar_chart, cols=2, widths = c(1.6, 1))
