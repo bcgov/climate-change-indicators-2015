@@ -104,8 +104,8 @@ map_theme <- theme(axis.title = element_blank(),
                    axis.text = element_blank(), 
                    axis.ticks = element_blank(),
                    panel.grid = element_blank(),
-                   legend.title = element_text(size = 12, face = "bold"),
-                   legend.text = element_text(size = 11),
+                   legend.title = element_text(size = 13, face = "bold"),
+                   legend.text = element_text(size = 12),
                    text = element_text(family = "Verdana"), 
                    legend.position = c(0.2, 0.15),
                    legend.direction = ("vertical"),
@@ -126,23 +126,23 @@ hdd_map <- ggplot(ecoprov_hdd, aes(x = long, y = lat, group = group, fill = Tren
   theme_minimal() +
   map_theme +
   annotate("text", x=720000, y=700000,label="Coast &\nMountains\n(CM)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1200000, y=1550000,label="Taiga\nPlain\n(TP)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=870000, y=1500000,label="N. Boreal\nMountains\n(NBM)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1110000, y=1150000, label="S. Boreal\nInterior\n(SBI)", colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1305000, y=1260000, label="Boreal\nPlains\n(BP)", colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1135000, y=820000,label="Central\nInterior\n(CI)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1360000, y=610000,label="S. Interior\n(SI)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1570000, y=695000,label="S. Interior\nMountains\n(SIM)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1320000, y=377000,label="Georgia\nDepression (GD)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   labs(title = "Change in Annual Energy\nRequirements for Heating")
  plot(hdd_map)
 
@@ -156,23 +156,23 @@ cdd_map <- ggplot(ecoprov_cdd, aes(x = long, y = lat, group = group, fill = Tren
   theme_minimal() +
   map_theme +
   annotate("text", x=720000, y=700000,label="Coast &\nMountains\n(CM)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1200000, y=1550000,label="Taiga\nPlain\n(TP)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=870000, y=1500000,label="N. Boreal\nMountains\n(NBM)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1110000, y=1150000, label="S. Boreal\nInterior\n(SBI)", colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1305000, y=1260000, label="Boreal\nPlains\n(BP)", colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1135000, y=820000,label="Central\nInterior\n(CI)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1360000, y=610000,label="S. Interior\n(SI)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1570000, y=695000,label="S. Interior\nMountains\n(SIM)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   annotate("text", x=1320000, y=377000,label="Georgia\nDepression (GD)",colour="black",
-           size=3.5, family = "Verdana") +
+           size=4, family = "Verdana") +
   labs(title = "Change in Annual Energy\nRequirements for Cooling")
  plot(cdd_map)
 
@@ -180,8 +180,16 @@ cdd_map <- ggplot(ecoprov_cdd, aes(x = long, y = lat, group = group, fill = Tren
 # multiplot(hdd_map, cdd_map, cols = 2)
 # dev.off()
 
-png_retina(filename = "./out/hdd_cdd_map.png", width=930, height = 450, units="px", type = "cairo-png")
-multiplot(hdd_map, cdd_map, cols = 2)
+# png_retina(filename = "./out/hdd_cdd_map.png", width=930, height = 450, units="px", type = "cairo-png")
+# multiplot(hdd_map, cdd_map, cols = 2)
+# dev.off()
+
+png_retina(filename = "./out/hdd_map.png", width=600, height=500, units="px", type = "cairo-png")
+plot(hdd_map)
+dev.off()
+
+png_retina(filename = "./out/cdd_map.png", width=600, height=500, units="px", type = "cairo-png")
+plot(cdd_map)
 dev.off()
 
 # svg_px(file = "./out/hdd_cdd_map.svg", width=930, height = 450)
