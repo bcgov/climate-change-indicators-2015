@@ -70,7 +70,7 @@ bar_chart <- ggplot(df_plot, aes(x = reorder(Ecoprovince, -Trend_DDcentury), y =
         plot.margin = unit(c(20,0,5,0),"mm"),
         panel.grid.major.x = (element_blank()),
         axis.text = element_text(size = 12),
-        axis.title = element_text(size = 12))
+        axis.title = element_text(size = 14))
 plot(bar_chart)
 
 
