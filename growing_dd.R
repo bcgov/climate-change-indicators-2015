@@ -134,7 +134,7 @@ gdd_map <- ggplot(ecoprov_df, aes(x = long, y = lat, group = group, fill = Trend
            size=4, family = "Verdana") +
   annotate("text", x=1570000, y=695000,label="S. Interior\nMountains\n(SIM)",colour="black",
            size=4, family = "Verdana") +
-  annotate("text", x=1320000, y=377000,label="Georgia\nDepression\n(GD)",colour="black",
+  annotate("text", x=1320000, y=377000,label="Georgia\nDepression (GD)",colour="black",
            size=4, family = "Verdana")
  plot(gdd_map)
 
@@ -146,12 +146,12 @@ gdd_map <- ggplot(ecoprov_df, aes(x = long, y = lat, group = group, fill = Trend
 # plot(gdd_map)
 # dev.off()
 
-png_retina(filename = "./out/gdd_map.png", width=600, height=500, units="px", type = "cairo-png")
+png_retina(filename = "./out/gdd_map.png", width=500, height=500, units="px", type = "cairo-png")
 plot(gdd_map)
 dev.off()
 
 ## output chart 
-svg_px(file = "./out/gdd_chart.svg", width=500, height=400)
+svg_px(file = "./out/gdd_chart.svg", width=500, height=450)
 plot(bar_chart)
 dev.off()
 

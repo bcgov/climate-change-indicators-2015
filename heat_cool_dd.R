@@ -184,11 +184,11 @@ cdd_map <- ggplot(ecoprov_cdd, aes(x = long, y = lat, group = group, fill = Tren
 # multiplot(hdd_map, cdd_map, cols = 2)
 # dev.off()
 
-png_retina(filename = "./out/hdd_map.png", width=600, height=500, units="px", type = "cairo-png")
+png_retina(filename = "./out/hdd_map.png", width=500, height=500, units="px", type = "cairo-png")
 plot(hdd_map)
 dev.off()
 
-png_retina(filename = "./out/cdd_map.png", width=600, height=500, units="px", type = "cairo-png")
+png_retina(filename = "./out/cdd_map.png", width=500, height=500, units="px", type = "cairo-png")
 plot(cdd_map)
 dev.off()
 
